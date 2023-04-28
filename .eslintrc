@@ -1,7 +1,44 @@
 {
-  "extends": ["taro/react"],
+  "extends": [
+    "taro/react"
+  ],
   "rules": {
+    "no-console": "warn",
+    "indent": [
+      "error",
+      4,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "no-else-return": 1,
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
-  }
+    "react/react-in-jsx-scope": "off",
+    "semi": [
+      "error",
+      "always"
+    ],
+    "space-unary-ops": 2,
+    "no-multi-spaces": "error",
+    "jsx-quotes": 0,
+    "import/prefer-default-export": 0,
+    "react/no-unused-state": 0,
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "Taro"
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".tsx"
+        ]
+      }
+    ],
+  },
+  "parser": "babel-eslint",
 }

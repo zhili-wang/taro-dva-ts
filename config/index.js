@@ -1,5 +1,5 @@
 const config = {
-  projectName: 'taro-mini',
+  projectName: 'taro-dva-ts',
   date: '2023-4-27',
   designWidth: 750,
   deviceRatio: {
@@ -9,7 +9,7 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: [],
+  plugins: ['@tarojs/plugin-html'],
   defineConstants: {
   },
   copy: {

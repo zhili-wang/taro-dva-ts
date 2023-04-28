@@ -26,19 +26,21 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:jd": "npm run build:jd -- --watch",
-    "dev:quickapp": "npm run build:quickapp -- --watch"
+    "dev:quickapp": "npm run build:quickapp -- --watch",
+    "tep": "node template"
   },
   "browserslist": [
     "last 3 versions",
     "Android >= 4.1",
     "ios >= 8"
   ],
-  "author": "",
+  "author": "wzl_Alex",
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "3.6.5",
     "@tarojs/helper": "3.6.5",
     "@tarojs/plugin-framework-react": "3.6.5",
+    "@tarojs/plugin-html": "^3.6.5",
     "@tarojs/plugin-platform-alipay": "3.6.5",
     "@tarojs/plugin-platform-h5": "3.6.5",
     "@tarojs/plugin-platform-jd": "3.6.5",
@@ -52,8 +54,14 @@
     "@tarojs/taro": "3.6.5",
     "dva-core": "^2.0.4",
     "dva-loading": "^3.0.24",
+    "dva-type": "^1.0.3",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.2",
+    "taro-ui": "^2.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
