@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDidHide, useDidShow, useLoad, usePullDownRefresh, useReady } from '@tarojs/taro'
 import { View, Text, CommonEvent } from '@tarojs/components'
 import './index.less'
-import { AtTabBar } from 'taro-ui'
+// import { AtTabBar } from 'taro-ui'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function Index() {
@@ -32,7 +32,7 @@ export default function Index() {
   return (
     <View className='index'>
       <Text>Hello world!</Text>
-      <AtTabBar
+      {/* <AtTabBar
         fixed
         tabList={[
           { title: '首页', iconType: 'home' },
@@ -41,7 +41,7 @@ export default function Index() {
         current={0}
         onClick={function (index: number, event: CommonEvent): void {
           throw new Error('Function not implemented.')
-        }} />
+        }} /> */}
     </View>
   )
 }
