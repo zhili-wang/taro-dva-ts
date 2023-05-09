@@ -4,6 +4,7 @@ import { View, Text, } from '@tarojs/components'
 import { useDispatch, useSelector } from 'react-redux'
 import { ModelStates } from '@/models'
 import styles from './index.module.less'
+import Taro from '@tarojs/taro'
 
 export default function Index() {
   const state = useSelector<ModelStates>(state => state)
@@ -19,6 +20,7 @@ export default function Index() {
     console.log('Page loaded.', {
       state,
       common,
+      env: Taro.getEnv(),
     })
     dispatch({
       type: 'common/pageInit',

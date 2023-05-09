@@ -32,7 +32,7 @@ export default (options: Options) => {
     header: {
       "Content-Type": "application/json",
     },
-    method: method.toUpperCase(),
+    method: method.toUpperCase() as Options['method'],
   }).then((res) => {
     const { statusCode, data } = res;
     if (statusCode >= 200 && statusCode < 300) {
