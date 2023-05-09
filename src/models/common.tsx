@@ -3,6 +3,7 @@ import Taro from '@tarojs/taro';
 export default {
   namespace: 'common',
   state: {
+    msg: '测试',
     access_token: Taro.getStorageSync('access_token'),
     mobile: Taro.getStorageSync('user_info')
       ? Taro.getStorageSync('user_info').mobile
@@ -20,7 +21,11 @@ export default {
       ? Taro.getStorageSync('user_info').erroMessage
       : '',
   },
-  effects: {},
+  effects: {
+    *pageInit({ payload }, { call, put, all }) {
+      console.info('payload', payload)
+    }
+  },
   reducers: {
     save(state, { payload }) {
       return { ...state, ...payload };

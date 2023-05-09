@@ -29,7 +29,7 @@ function App({ children }: PropsWithChildren) {
   useError((error) => {
     console.log(error);
   });
-
+  // return children
   return <Provider store={store}>{children}</Provider>;
 }
 

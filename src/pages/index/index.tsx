@@ -1,20 +1,30 @@
 import { useEffect } from 'react'
 import { useDidHide, useDidShow, useLoad, usePullDownRefresh, useReady } from '@tarojs/taro'
-import { View, Text, CommonEvent } from '@tarojs/components'
+import { View, Text, } from '@tarojs/components'
 import './index.less'
-// import { AtTabBar } from 'taro-ui'
 import { useDispatch, useSelector } from 'react-redux'
 
-export default function Index() {
-
-  const { demo } = useSelector(state => state.demo)
+function Index() {
+  const state = useSelector(state => state)
+  const common = useSelector(state => state?.common)
   const dispatch = useDispatch();
 
-  useLoad(() => {
-    console.log('Page loaded.')
-  })
   // 可以使用所有的 React Hooks
-  useEffect(() => { })
+  useEffect(() => {
+    console.info('useEffect')
+  })
+
+  useLoad(() => {
+    console.log('Page loaded.', {
+      state,
+      common,
+    })
+    console.info('useLoad')
+    dispatch({
+      type: 'common/pageInit',
+      payload: '测试111'
+    })
+  })
 
   // 对应 onReady
   useReady(() => { })
@@ -30,7 +40,7 @@ export default function Index() {
   usePullDownRefresh(() => { })
 
   return (
-    <View className='index'>
+    <View>
       <Text>Hello world!</Text>
       {/* <AtTabBar
         fixed
@@ -45,3 +55,4 @@ export default function Index() {
     </View>
   )
 }
+export default Index;

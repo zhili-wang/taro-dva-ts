@@ -1,19 +1,22 @@
 import { DvaModel } from "./entitys";
 
 export interface DemoModelState {
-  status: boolean
+  status: boolean;
+  msg: string
 }
 
 const initState: DemoModelState = {
   status: false,
+  msg: '测试'
 }
 
 const DemoModel: DvaModel<DemoModelState> = {
   namespace: 'demo',
   state: initState,
   effects: {
-  },
-  subscriptions: {
+    *pageInit({ },) {
+      console.info('init test')
+    }
   },
   reducers: {
     save(state, { payload }) {

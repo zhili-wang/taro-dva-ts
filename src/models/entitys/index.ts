@@ -1,3 +1,7 @@
-import { Model } from "./dvaType";
+import { Model, Effect } from "./dvaType";
 
-export type DvaModel<S> = Model<S>
+export interface DvaModel<S> extends Model<S> {
+  namespace: string;
+  state: Record<string, any>;
+  effects: Record<string, Effect>;
+}
