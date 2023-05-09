@@ -3,10 +3,11 @@ import { useDidHide, useDidShow, useLoad, usePullDownRefresh, useReady } from '@
 import { View, Text, } from '@tarojs/components'
 import './index.less'
 import { useDispatch, useSelector } from 'react-redux'
+import { ModelStates } from 'src/models'
 
-function Index() {
-  const state = useSelector(state => state)
-  const common = useSelector(state => state?.common)
+export default function Index() {
+  const state = useSelector<ModelStates>(state => state)
+  const common = useSelector<ModelStates>(state => state.common)
   const dispatch = useDispatch();
 
   // 可以使用所有的 React Hooks
@@ -55,4 +56,3 @@ function Index() {
     </View>
   )
 }
-export default Index;
