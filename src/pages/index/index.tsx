@@ -20,7 +20,6 @@ export default function Index() {
       state,
       common,
     })
-    console.info('useLoad')
     dispatch({
       type: 'common/pageInit',
       payload: '测试111'
