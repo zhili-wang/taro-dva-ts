@@ -41,6 +41,7 @@
     "@tarojs/helper": "3.6.5",
     "@tarojs/plugin-framework-react": "3.6.5",
     "@tarojs/plugin-html": "^3.6.5",
+    "@tarojs/plugin-less": "^2.2.10",
     "@tarojs/plugin-platform-alipay": "3.6.5",
     "@tarojs/plugin-platform-h5": "3.6.5",
     "@tarojs/plugin-platform-jd": "3.6.5",

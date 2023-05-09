@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useDidHide, useDidShow, useLoad, usePullDownRefresh, useReady } from '@tarojs/taro'
 import { View, Text, } from '@tarojs/components'
-import './index.less'
 import { useDispatch, useSelector } from 'react-redux'
-import { ModelStates } from 'src/models'
+import { ModelStates } from '@/models'
+import styles from './index.module.less'
 
 export default function Index() {
   const state = useSelector<ModelStates>(state => state)
@@ -39,7 +39,7 @@ export default function Index() {
   usePullDownRefresh(() => { })
 
   return (
-    <View>
+    <View className={styles.pageContent}>
       <Text>Hello world!</Text>
     </View>
   )

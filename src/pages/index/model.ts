@@ -1,4 +1,4 @@
-import { DvaModel } from "src/models/entitys";
+import { DvaModel } from "@/models/entitys";
 
 export interface IndexModelState {
   status: boolean;

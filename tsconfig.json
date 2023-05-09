@@ -20,7 +20,17 @@
     "resolveJsonModule": true,
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "paths": {
+      "@/*":["./src/*"],
+      "@/framework/components/*":["./src/framework/components/*"],
+      "@/framework/utils/*":["./src/framework/utils/*"],
+      "@/assets/*":["./src/assets/*"],
+      "@/pages/*":["./src/pages/*"],
+      "@/models/*":["./src/models/*"],
+      "@/service/*":["./src/service/*"],
+      "@/types/*":["./src/types/*"],
+    },
   },
   "include": ["./src", "./types"],
   "compileOnSave": false
