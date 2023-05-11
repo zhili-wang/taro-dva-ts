@@ -15,9 +15,11 @@ const config = {
     '@tarojs/plugin-html',
     '@tarojs/plugin-less',
     'taro-plugin-compiler-optimization',
-    ['taro-plugin-compiler-optimization', {
-      closeScssCache: false, // 默认开启cache-loader缓存scss策略,若想关闭该策略改为true
-    }],
+    [
+      'taro-plugin-compiler-optimization', {
+        closeScssCache: false, // 默认开启cache-loader缓存scss策略,若想关闭该策略改为true
+      }
+    ],
   ],
   defineConstants: {
   },
