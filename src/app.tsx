@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect } from "react";
 import { useDidHide, useDidShow, useError, useLaunch } from "@tarojs/taro";
-import "./app.less";
+import "./app.scss";
 import dva from "./framework/utils/dva";
 import models from './models';
 import { Provider } from 'react-redux'

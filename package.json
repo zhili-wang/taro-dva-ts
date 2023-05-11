@@ -8,6 +8,7 @@
     "typescript": true,
     "css": "less"
   },
+  "engines": { "node": ">= 16.10.0" },
   "scripts": {
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
@@ -53,6 +54,7 @@
     "@tarojs/runtime": "3.6.5",
     "@tarojs/shared": "3.6.5",
     "@tarojs/taro": "3.6.5",
+    "cache-loader": "^4.1.0",
     "dva-core": "^2.0.4",
     "dva-loading": "^3.0.24",
     "dva-type": "^1.0.3",
@@ -61,9 +63,12 @@
     "react-redux": "^8.0.5",
     "redux": "^4.2.1",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "taro-plugin-compiler-optimization": "^1.0.4",
+    "thread-loader": "^4.0.1"
   },
   "devDependencies": {
+    "@antmjs/babel-preset": "^2.3.6",
     "@babel/core": "^7.8.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
     "@tarojs/cli": "3.6.5",

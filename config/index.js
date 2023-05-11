@@ -6,13 +6,18 @@ const config = {
   deviceRatio: {
     640: 2.34 / 2,
     750: 1,
-    828: 1.81 / 2
+    828: 1.81 / 2,
+    375: 2 / 1,
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
   plugins: [
     '@tarojs/plugin-html',
     '@tarojs/plugin-less',
+    'taro-plugin-compiler-optimization',
+    ['taro-plugin-compiler-optimization', {
+      closeScssCache: false, // 默认开启cache-loader缓存scss策略,若想关闭该策略改为true
+    }],
   ],
   defineConstants: {
   },
@@ -29,11 +34,16 @@ const config = {
     '@/assets': path.resolve(__dirname, '..', 'src/assets'),
     '@/models': path.resolve(__dirname, '..', 'src/models'),
     '@/service': path.resolve(__dirname, '..', 'src/service'),
-  //   // '@/package': path.resolve(__dirname, '..', 'package.json'),
-  //   // '@/project': path.resolve(__dirname, '..', 'project.config.json'),
+    //   // '@/package': path.resolve(__dirname, '..', 'package.json'),
+    //   // '@/project': path.resolve(__dirname, '..', 'project.config.json'),
   },
   framework: 'react',
-  compiler: 'webpack5',
+  // compiler: 'webpack5',
+  compiler: {
+    type: 'webpack5',
+    prebundle: {
+    }
+  },
   cache: {
     enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
