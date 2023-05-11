@@ -17,6 +17,7 @@ const config = {
     'taro-plugin-compiler-optimization',
     [
       'taro-plugin-compiler-optimization', {
+        enable: true,
         closeScssCache: false, // 默认开启cache-loader缓存scss策略,若想关闭该策略改为true
       }
     ],
@@ -40,10 +41,10 @@ const config = {
     //   // '@/project': path.resolve(__dirname, '..', 'project.config.json'),
   },
   framework: 'react',
-  // compiler: 'webpack5',
   compiler: {
     type: 'webpack5',
     prebundle: {
+      enable: true,
     }
   },
   cache: {
