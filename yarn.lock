@@ -6490,9 +6490,9 @@ history@^5.1.0:
     "@babel/runtime" "^7.7.6"
 
 hls.js@^1.1.5:
-  version "1.4.1"
-  resolved "https://registry.npmmirror.com/hls.js/-/hls.js-1.4.1.tgz#0792582650e5dd4517f7ebbf8cd3ca3b6f900bb9"
-  integrity sha512-7/RBLhnmWbEVj/UxkqBK3rcqr/a2QAbSdjdp74iRKaPLosJoPwLw9mcjl5EOv6jutd0yHL8yGH3pSuUjNzRMyA==
+  version "1.4.2"
+  resolved "https://registry.npmmirror.com/hls.js/-/hls.js-1.4.2.tgz#14c271d78daed1f5d2b7b58d7edd9bcdefc44928"
+  integrity sha512-+MPySxF0WVMj/uzj+LDtNFSU93X1+VbjLLixk2xah6Sf4LqU+qC02MjZVF/yvb1Cg9Gjor1g8K33K9b9etqJ/Q==
 
 hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.2:
   version "3.3.2"

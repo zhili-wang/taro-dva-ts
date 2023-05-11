@@ -8,7 +8,9 @@
     "typescript": true,
     "css": "less"
   },
-  "engines": { "node": ">= 16.10.0" },
+  "engines": {
+    "node": ">= 16.10.0"
+  },
   "scripts": {
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
