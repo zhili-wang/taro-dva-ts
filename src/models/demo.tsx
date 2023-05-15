@@ -1,4 +1,4 @@
-import { DvaModel } from "./entitys";
+import type { Model } from '@/models/entitys/dvaType'
 
 export interface DemoModelState {
   status: boolean;
@@ -10,7 +10,7 @@ const initState: DemoModelState = {
   msg: '测试'
 }
 
-const DemoModel: DvaModel<DemoModelState> = {
+const DemoModel: Model<DemoModelState> = {
   namespace: 'demo',
   state: initState,
   effects: {

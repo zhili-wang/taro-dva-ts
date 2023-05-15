@@ -1,4 +1,4 @@
-import { DvaModel } from "@/models/entitys";
+import type { Model } from '@/models/entitys/dvaType'
 
 export interface IndexModelState {
   status: boolean;
@@ -10,7 +10,7 @@ const initState: IndexModelState = {
   msg: 'index'
 }
 
-const IndexModel: DvaModel<IndexModelState> = {
+const IndexModel: Model<IndexModelState> = {
   namespace: 'index',
   state: initState,
   effects: {

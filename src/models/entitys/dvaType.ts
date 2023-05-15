@@ -1,132 +1,74 @@
-import {
-  Model as DvaModel,
-  EffectsCommandMap,
-  EffectType,
-  ReducerEnhancer,
-} from "dva";
-import { Reducer } from "redux";
+// 推导 dva Model
+import { Action, Reducer, Dispatch, } from "redux";
 
-export interface Model<S = any> extends DvaModel {
+interface AnyAction extends Action {
+  [extraProps: string]: any
+}
+interface EffectsCommandMap {
+  put: <S>(action: {
+    type: EffectAction<S extends Model ? S : string>,
+    payload?: any
+    [key: string]: any
+  }) => any,
+  call: Function,
+  select: Function,
+  take: Function,
+  cancel: Function,
+  [key: string]: any,
+}
+// 推导 Effect
+export type Effect = (action: AnyAction, effects: EffectsCommandMap) => void;
+
+type EffectAction<M extends Model | string> = M extends Model
+  ? `${M['namespace']}/${(keyof M['effects'] | keyof M['reducers']) & string}` | `${(keyof M['effects'] | keyof M['reducers']) & string}`
+  : string;
+
+export type ReducersMapObject<S = any, A extends Action = Action> = {
+  [K in keyof S]: Reducer<S[K], A>
+}
+export type ReducersMapObjectWithEnhancer = [ReducersMapObject, ReducerEnhancer];
+interface ReducerEnhancer {
+  (reducer: Reducer<any>): void,
+}
+export interface EffectsMapObject {
+  [key: string]: Effect | EffectWithType,
+}
+type EffectWithType = [Effect, { type: EffectType }];
+type EffectType = 'takeEvery' | 'takeLatest' | 'watcher' | 'throttle';
+
+export interface SubscriptionsMapObject {
+  [key: string]: Subscription,
+}
+type Subscription = (api: SubscriptionAPI, done: Function) => void;
+interface SubscriptionAPI {
+  // Taro没有history，这个可以废弃
+  history: History,
+  dispatch: DvaDispatch,
+}
+
+/**
+ * ActionType， 推导当前effect & reducer
+ * @default string
+ */
+type ActionType<M extends Model | string> = M extends Model
+  ? `${M['namespace']}/${(keyof M['effects'] | keyof M['reducers']) & string}`
+  : string;
+
+type DispatchType = <S>(action: {
+  type: ActionType<S extends Model ? S : string>,
+  payload?: any
+  [key: string]: any
+}) => Promise<any>
+
+export type DvaDispatch = DispatchType & Dispatch
+
+export interface Model<S = Record<string, any>> {
+  namespace: string,
+  state?: S,
+  // reducers?: ReducersMapObject<S> | ReducersMapObjectWithEnhancer,
   reducers?: {
-    __R__?: Reducer<S>;
     [k: string]: Reducer<S>;
   };
-}
-
-/**
- * @param P effects 的 payload 类型
- */
-export type Effect<P = undefined> = (
-  action: { type: any; payload?: P },
-  effect: EffectsCommandMap
-) => void;
-
-/**
- * @description 提取 map 中的 value 类型
- */
-export type ValueType<T extends Record<any, any>> = T[keyof T];
-
-/**
- * @description 将联合类型转换为交叉类型
- */
-export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
-  k: infer I
-) => void
-  ? I
-  : never;
-
-/**
- * @description 提取 model 中的 effects 的 payload 类型
- */
-export type ResolverEffects<T extends Record<string, Model>> = ValueType<{
-  [t in keyof T]: ValueType<{
-    [k in keyof T[t]["effects"]]: T[t]["effects"][k] extends (
-      action: { type: any; payload?: infer A },
-      effect: EffectsCommandMap
-    ) => void
-      ? A extends undefined
-        ? {
-            // @ts-expect-error
-            type: `${t}/${k}`;
-            [k: string]: any;
-          }
-        : {
-            // @ts-expect-error
-            type: `${t}/${k}`;
-            payload: A;
-            [k: string]: any;
-          }
-      : T[t]["effects"][k] extends [
-          (
-            action: { type: any; payload?: infer A },
-            effect: EffectsCommandMap
-          ) => void,
-          { type: EffectType }
-        ]
-      ? A extends undefined
-        ? {
-            // @ts-expect-error
-            type: `${t}/${k}`;
-            [k: string]: any;
-          }
-        : {
-            // @ts-expect-error
-            type: `${t}/${k}`;
-            payload: A;
-            [k: string]: any;
-          }
-      : never;
-  }>;
-}>;
-
-/**
- * @description 提取 model 中的 reducers 类型
- */
-export type ResolverReducers<T extends Record<string, Model>> = ValueType<{
-  [t in keyof T]: T[t]["reducers"] extends {
-    __R__?: Reducer;
-  }
-    ? never
-    : T[t]["reducers"] extends [infer A, ReducerEnhancer]
-    ? ValueType<{
-        [k in keyof A]: {
-          // @ts-expect-error
-          type: `${t}/${k}`;
-          payload: T[t]["state"];
-          [k: string]: any;
-        };
-      }>
-    : ValueType<{
-        [k in keyof T[t]["reducers"]]: {
-          // @ts-expect-error
-          type: `${t}/${k}`;
-          payload: T[t]["state"];
-          [k: string]: any;
-        };
-      }>;
-}>;
-
-/**
- * @description 提取 model 中的 state 类型
- */
-export type ResolverState<T extends Record<string, Model>> = UnionToIntersection<{
-  [k in keyof T]: T[k]["state"];
-}>;
-
-/* dva-loading 插件提示 */
-export interface Loading<T extends Record<string, Model>> {
-  loading: {
-    global: boolean;
-    models: {
-      [k in keyof T]: boolean;
-    };
-    effects: {
-      [k in ResolverEffects<T>["type"]]: boolean;
-    };
-  };
-}
-
-export interface ResolverModels<T extends Record<string, Model>> {
-  state: ResolverState<T> & Loading<T>;
-  actions: ResolverReducers<T> | ResolverEffects<T>;
+  effects?: EffectsMapObject,
+  subscriptions?: SubscriptionsMapObject,
 }

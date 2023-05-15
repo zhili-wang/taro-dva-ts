@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro';
+import type { Model } from '@/models/entitys/dvaType'
 
-export default {
+const CommonModel: Model<any> = {
   namespace: 'common',
   state: {
     msg: '测试',
@@ -22,7 +23,7 @@ export default {
       : '',
   },
   effects: {
-    *pageInit({ payload }, { call, put, all }) {
+    * pageInit({ payload }, { }) {
       console.info('payload', payload)
     }
   },
@@ -35,3 +36,5 @@ export default {
     // }
   },
 };
+
+export default CommonModel
